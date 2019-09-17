@@ -10,12 +10,12 @@ import * as serviceWorker from './serviceWorker';
 const routing = (
     <Router>
         <>
-          <aside class="sidebar">
-              <nav class="nav">
+          <aside className="sidebar">
+              <nav className="nav">
         <ul>
           <li>
             <NavLink exact to="/" activeClassName="active">
-            <FontAwesomeIcon icon="utensils" />Food</NavLink>
+            <FontAwesomeIcon icon="fa-utensils" />Food</NavLink>
           </li>
           <li>
             <NavLink to="/orders" activeClassName="active">Orders</NavLink>

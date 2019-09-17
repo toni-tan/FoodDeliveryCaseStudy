@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Poppins&display=swap');
 .App {
   text-align: center;
 }
@@ -32,7 +33,7 @@
   }
 }
 
-@import url('https://fonts.googleapis.com/css?family=Lato|Poppins&display=swap');
+
  html {
 	 font-family: Arial;
 	 font-size: 16px;
@@ -41,7 +42,7 @@
 
 body{
   margin: 0px;
-  display: flex;
+  display: block;
 }
  .sidebar {
 	 position: fixed;
@@ -100,11 +101,12 @@ body{
 
 }
 
+
 .main {
   position: relative;
-  /* width: 75%; */
-  float: right;
-  height: 100vh;
+  width: 65%; 
+  float: left;
+  height: 100%;
 }
 
 .main .container {
@@ -113,4 +115,31 @@ body{
   align-items: center;
   justify-content: center;
   height: 100%;
+} 
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  font-size:25px;
+  /* letter-spacing: 0.1em; */
+  /* color: #FFF; */
+  /* font-weight: bold; */
+  margin-top: 30px;
+  padding-top: 20px;
+  margin-left: 30px;
 }
+
+.row {
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+  /* padding-bottom: 1em; Height of footer */
+  min-height: 100%;
+}
+
+.column {
+  flex: 50%;
+}
+
+
+

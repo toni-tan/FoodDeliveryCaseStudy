@@ -6,11 +6,17 @@ class FoodList extends Component {
     return (
       <Fragment>
       
-      <div class="main">
-        <div class="container">
-           <p>Food List</p>
+      {/* <div className="row"> */}
+        <div className="column">
+          <div className="main">
+            <div className="container">
+           <p className="title"><b>Food</b> List
+           </p>
+           
         </div>
         </div>
+        </div>
+        {/* </div> */}
       </Fragment>
       )
   }
