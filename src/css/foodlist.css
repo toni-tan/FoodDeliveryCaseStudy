@@ -1,0 +1,10 @@
+.myButton {
+    
+    padding: 30px;
+    display:block;
+    float:right;
+    background-color: green;
+    color: white;
+    text-align:center;
+    
+}

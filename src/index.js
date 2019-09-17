@@ -9,13 +9,14 @@ import * as serviceWorker from './serviceWorker';
 
 const routing = (
     <Router>
-        <>
+        <div className="flex-container">
+          <div>
           <aside className="sidebar">
               <nav className="nav">
         <ul>
           <li>
             <NavLink exact to="/" activeClassName="active">
-            <FontAwesomeIcon icon="fa-utensils" />Food</NavLink>
+            <i className="fas fa-utensils" />Food</NavLink>
           </li>
           <li>
             <NavLink to="/orders" activeClassName="active">Orders</NavLink>
@@ -24,10 +25,10 @@ const routing = (
         </nav>
         </aside>
         
-     </>
+     </div>
         <Route exact path="/" component={App} />
         <Route path="/orders" component={OrderList} />
-   
+        </div>
     </Router>
   )
 

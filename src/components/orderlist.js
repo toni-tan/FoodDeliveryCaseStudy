@@ -5,17 +5,9 @@ class OrderList extends Component {
  render() {
       return (
         <Fragment>
-        
-        {/* <div className="row"> */}
-          <div className="column">
-            <div className="main">
-              <div className="container">
-                
-             <p className="title"><b>Order</b> List</p>
-              </div>
-            </div>
-          </div>
-          {/* </div> */}
+          <div className="flex-container">
+           <div><p className="title"><b>Order</b> List</p></div>
+             </div>  
         </Fragment>
         )
     }
