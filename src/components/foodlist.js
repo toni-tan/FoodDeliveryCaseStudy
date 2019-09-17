@@ -1,8 +1,18 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import '../css/foodlist.css'
 
 class FoodList extends Component {
   render() {
-    return <h1>Food List</h1>
+    return (
+      <Fragment>
+      
+      <div class="main">
+        <div class="container">
+           <p>Food List</p>
+        </div>
+        </div>
+      </Fragment>
+      )
   }
 }
 export default FoodList

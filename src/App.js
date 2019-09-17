@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 import './App.css';
 import FoodList from './components/foodlist';
 
-function App() {
+class App extends Component{
+  render(){
   return (
-    <FoodList />
+    <Fragment>
+        <FoodList />
+    </Fragment>
   );
+}
 }
 
 export default App;
