@@ -1,114 +1,119 @@
 import React, {Component, Fragment} from 'react';
 import '../css/addfood.css';
 
+const foodInitState = {
+  name: '',
+  price: 0,
+  inStock: true
+};
+
 class AddFood extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-          foodItemList: [],
-          food: {
-            name: '',
-            price: '',
-            inStock: true
-          }
-        }
-      }
+  constructor(props) {
+    super(props);
 
-      handleChangeInfo = e => {
-        const { name, value, checked } = e.target;
-    
-        if(name === 'inStock')
-          return this.setState(prev => ({
-            food: {
-              ...prev.food,
-              inStock: checked
-            }
-          }));
-        
-        // THIS 
-        else if(name === 'price')
-          return this.setState(prev => ({
-            food: {
-              ...prev.food,
-              price: value
-            }
-          }));
-        // AND THIS
-        else if(name === 'name')
-          return this.setState(prev => ({
-            food: {
-              ...prev.food,
-               name: value
-            }
-          }));
-    
-        // IS EQUALS TO THIS
-        this.setState((prevState) => ({
-          food: {
-            ...prevState.food,
-            [name]: value
-          }	
-        }));
-      }
-      // onChange = e => {
-      //   console.log(e.target.value);
-      // }
+    this.state = {
+      foodItemList: [],
+      food: foodInitState
+    }
+  }
 
-      handleAddFoodItem = e => {
-        let {food, foodItemList} = this.state;
-        if (food.name.length <= 0 || food.price.length <= 0) {
-          return alert('Food item name or Unit price cannot be blank!');
-        }
-        if (isNaN(food.price)){
-            return alert('Price must be number!');
-        }
-        if (food.price < 0){
-          return alert ("Price must be a non-negative number!");
-        }
+  handleChangeName = e => this.setState({
+    food: {
+      ...this.state.food,
+      name: e.target.value
+    }
+  });
 
-       // let userList = [...this.state.userList];
-          foodItemList.push(food);
-          this.setState({ foodItemList });
-          e.preventDefault();
-      }
+  handleChangePrice = e => this.setState({
+    food: {
+      ...this.state.food,
+      price: e.target.value
+    }
+  });
 
-      
-    render() {
-        
-        console.log(this.state.foodItemList);
-         return (
-           <Fragment>
-               
-            <div>
-                <p className="title"><b>Add </b> Food Item </p>
-            </div>
-            <div />
-          <div className="flex-margin"> 
+  handleChangeInStock = e => this.setState({
+    food: {
+      ...this.state.food,
+      inStock: e.target.checked
+    }
+  });
+
+  handleClearFoodFields = () => this.setState({ food: foodInitState });
+
+  handleAddFoodItem = e => {
+    let { food, foodItemList } = this.state;
+    if (food.name.length <= 0 || food.price.length <= 0)
+      return alert('Food item name or Unit price cannot be blank!');
+
+    if (isNaN(food.price))
+      return alert('Price must be number!');
+
+    if (food.price < 0)
+      return alert("Price must be a non-negative number!");
+
+    for(let id in foodItemList)
+      if(foodItemList[id].name === food.name)
+        return alert("Inputed name already exists");
+
+    // THIS IS NEEDED
+    food.price = Number(food.price);
+    foodItemList.push(food);
+    this.setState({ foodItemList }, this.handleClearFoodFields);
+
+    alert("SUCCESS!");
+    e.preventDefault();
+  }
+
+
+  render() {
+    console.log(this.state);
+
+    return (
+      <Fragment>
+        <div>
+          <p className="title"><b>Add </b> Food Item </p>
+        </div>
+        <div />
+        <div className="flex-margin">
           <form>
-            <input required type="text" name="name" autoComplete="off"  id="name" onChange={this.handleChangeInfo} />
+            <input required
+            autoComplete="off"
+              type="text"
+              name="name"
+              id="name"
+              value={this.state.food.name}
+              onChange={this.handleChangeName} />
             <label alt="Food Item Name" placeholder="Enter Food Item Name" />
             <br />
-            <input required type="text" name="price" autoComplete="off" id="price" onChange={this.handleChangeInfo} />
+            <input required
+              autoComplete="off"
+              type="text"
+              name="price"
+              id="price"
+              value={this.state.food.price}
+              onChange={this.handleChangePrice} />
             <label alt="Unit Price (₱)" placeholder="Enter Unit Price" />
-            <br /><div className="text">Is it in Stock?</div>  
+            <br /><div className="text">Is it in Stock?</div>
             <div className="button r" id="button-1">
-            <input type="checkbox" name="inStock" className="checkbox" id="inStock" 
-            checked={this.state.food.inStock}
-            onChange={this.handleChangeInfo} /> 
-            <div className="knobs"></div>
-            <div className="layer"></div> 
+              <input
+                type="checkbox"
+                name="inStock"
+                id="inStock"
+                className="checkbox"
+                checked={this.state.food.inStock}
+                onChange={this.handleChangeInStock} />
+              <div className="knobs"></div>
+              <div className="layer"></div>
             </div>
-            <br/>
+            <br />
             <button type="button" onClick={this.handleAddFoodItem} className="submit">Submit</button>
-        
           </form>
-        </div> 
-           </Fragment>
-           
-           )
-           
-       }
-     }
-   
-   export default AddFood 
+        </div>
+      </Fragment>
+
+    )
+
+  }
+}
+
+export default AddFood
