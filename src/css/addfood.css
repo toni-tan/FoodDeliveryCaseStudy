@@ -87,6 +87,30 @@ input[type="text"] {
     border-radius: 2px;
 }
 
+.submit {
+    display: flex;
+    justify-content: center;
+    padding: 0.3em 1em;
+    text-decoration: none;
+    color: #7D5BA6;
+    border: solid 2px #7D5BA6;
+    background: #fff;
+    border-radius: 3px;
+    transition: .4s;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+    position: fixed;
+    left: 46%;
+    top:52%;
+}
+
+.submit:hover {
+    background: #8f94fb;
+    color: white;
+}
+
 .checkbox
 {
     position: relative;
@@ -98,7 +122,6 @@ input[type="text"] {
     cursor: pointer;
     z-index: 3;
 }
-
 .knobs
 {
     z-index: 2;
