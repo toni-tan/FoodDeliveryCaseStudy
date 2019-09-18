@@ -1,8 +1,15 @@
 import React, {Component, Fragment} from 'react';
+import { withRouter } from 'react-router-dom';
 import '../css/foodlist.css'
 import '../css/App.css'
 
 class FoodList extends Component {
+
+  handleClick = () => {
+    let path = "/addfood";
+    this.props.history.push(path);
+  }
+
   render() {
     return (
       <Fragment>
@@ -10,9 +17,9 @@ class FoodList extends Component {
           {/* <div className="container"> */}
           <div><p className="title"><b>Food</b> List </p></div>
           <div>   
-            <button class="icon-btn add-btn">
-                  <div class="add-icon"></div>
-                  <div class="btn-txt">Add Food</div>
+            <button className="icon-btn add-btn" onClick={this.handleClick}>
+                  <div className="add-icon"></div>
+                  <div className="btn-txt">Add Food</div>
             </button>
           </div>
           {/* </div> */}
@@ -24,4 +31,4 @@ class FoodList extends Component {
       )
   }
 }
-export default FoodList
+export default withRouter(FoodList)

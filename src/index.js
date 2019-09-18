@@ -5,6 +5,7 @@ import { Route, NavLink, BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import OrderList from "./components/orderlist";
+import AddFood from "./components/addfood";
 import * as serviceWorker from "./serviceWorker";
 
 const routing = (
@@ -31,6 +32,7 @@ const routing = (
       </div>
       <Route exact path="/" component={App} />
       <Route path="/orders" component={OrderList} />
+      <Route path="/addfood" component={ AddFood }/>
     </div>
   </Router>
 );
