@@ -114,6 +114,10 @@ body{
   margin-left: -53px;
 }
 
+.fa-width {
+ width: 2.25em !important;
+}
+
 .flex-container {
   /* display: flex;
   flex-flow: row nowrap;
@@ -121,20 +125,26 @@ body{
   flex-direction: row; */
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  /* flex-wrap: nowrap; */
+  flex-flow: row wrap;
   justify-content: flex-start;
   align-content: center;
   align-items: flex-start;
 }
 
 .flex-container > div {
-  flex: 1 1 50%;
+  /* flex: 1 1 50%; */
+  flex: 1 0 calc(33.333% - 20px); 
   align-self: auto;
+  /* flex-grow: 1; */
   /* width: 100%;
   margin: 10px;
   text-align: center; */
   /* line-height: 75px; */
 }
 
+.flex-margin{
+  margin-left: 400px;
+}
 
 

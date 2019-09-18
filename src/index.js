@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faUtensils, faClipboardList } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Route, NavLink, BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
@@ -17,13 +19,14 @@ const routing = (
             <ul>
               <li>
                 <NavLink exact to="/" activeClassName="active">
-                  <i className="fas fa-utensils" />
-                  Food
+                 <FontAwesomeIcon className="fa-width" icon={faUtensils}/>
+                    Food
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/orders" activeClassName="active">
-                  Orders
+                <FontAwesomeIcon className="fa-width" icon={faClipboardList}/>
+                    Orders
                 </NavLink>
               </li>
             </ul>
