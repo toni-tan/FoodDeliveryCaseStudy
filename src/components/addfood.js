@@ -34,9 +34,6 @@ class AddFood extends Component {
             return alert('Price must be number!');
         }
 
-        food.inStock = e.target.checked ? 'on' : 'off';
-        console.log(food.inStock);
-
        // let userList = [...this.state.userList];
           foodItemList.push(food);
           this.setState({ foodItemList });
