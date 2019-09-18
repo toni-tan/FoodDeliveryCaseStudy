@@ -58,8 +58,9 @@ class AddFood extends Component {
     // THIS IS NEEDED
     food.price = Number(food.price);
     foodItemList.push(food);
-    this.setState({ foodItemList }, this.handleClearFoodFields);
 
+    const newFoodItem = {...foodItemList};
+    this.setState({ foodItemList: newFoodItem }, this.handleClearFoodFields);
     alert("SUCCESS!");
     e.preventDefault();
   }
