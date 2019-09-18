@@ -130,13 +130,13 @@ input[type="text"] {
 .layer
 {
     width: 100%;
-    background-color: #DBF4CF;
+    background-color: #fcebeb;
     transition: 0.3s ease all;
     z-index: 1;
 }
 
 /* Button 1 */
-#button-1 .knobs:before
+#button-1 .checkbox:checked + .knobs:before
 {
     content: 'YES';
     position: absolute;
@@ -155,8 +155,24 @@ input[type="text"] {
     transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
 
-#button-1 .checkbox:checked + .knobs:before
+#button-1 .knobs:before
 {
+  
+    content: 'YES';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 10px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: #63C132;
+    border-radius: 50%;
+    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
     content: 'NO';
     left: 42px;
     background-color: #f44336;
@@ -164,7 +180,7 @@ input[type="text"] {
 
 #button-1 .checkbox:checked ~ .layer
 {
-    background-color: #fcebeb;
+    background-color: #DBF4CF;
 }
 
 #button-1 .knobs, #button-1 .knobs:before, #button-1 .layer

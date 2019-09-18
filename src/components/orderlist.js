@@ -8,9 +8,9 @@ class OrderList extends Component {
          
            <div><p className="title"><b>Order</b> List</p></div>
            <div>
-            <button class="icon-btn add-btn">
-                  <div class="add-icon"></div>
-                  <div class="btn-txt">Add Order</div>
+            <button className="icon-btn add-btn">
+                  <div className="add-icon"></div>
+                  <div className="btn-txt">Add Order</div>
             </button>
           </div>
         </Fragment>

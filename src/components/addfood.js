@@ -10,20 +10,50 @@ class AddFood extends Component {
           food: {
             name: '',
             price: '',
-            inStock: ''
+            inStock: true
           }
         }
       }
 
       handleChangeInfo = e => {
-        const { name, value } = e.target;
+        const { name, value, checked } = e.target;
+    
+        if(name === 'inStock')
+          return this.setState(prev => ({
+            food: {
+              ...prev.food,
+              inStock: checked
+            }
+          }));
+        
+        // THIS 
+        else if(name === 'price')
+          return this.setState(prev => ({
+            food: {
+              ...prev.food,
+              price: value
+            }
+          }));
+        // AND THIS
+        else if(name === 'name')
+          return this.setState(prev => ({
+            food: {
+              ...prev.food,
+               name: value
+            }
+          }));
+    
+        // IS EQUALS TO THIS
         this.setState((prevState) => ({
           food: {
             ...prevState.food,
             [name]: value
-          }
+          }	
         }));
       }
+      // onChange = e => {
+      //   console.log(e.target.value);
+      // }
 
       handleAddFoodItem = e => {
         let {food, foodItemList} = this.state;
@@ -32,6 +62,9 @@ class AddFood extends Component {
         }
         if (isNaN(food.price)){
             return alert('Price must be number!');
+        }
+        if (food.price < 0){
+          return alert ("Price must be a non-negative number!");
         }
 
        // let userList = [...this.state.userList];
@@ -53,14 +86,16 @@ class AddFood extends Component {
             <div />
           <div className="flex-margin"> 
           <form>
-            <input required type="text" name="name"  id="name" onChange={this.handleChangeInfo} />
+            <input required type="text" name="name" autoComplete="off"  id="name" onChange={this.handleChangeInfo} />
             <label alt="Food Item Name" placeholder="Enter Food Item Name" />
             <br />
-            <input required type="text" name="price" id="price" onChange={this.handleChangeInfo} />
+            <input required type="text" name="price" autoComplete="off" id="price" onChange={this.handleChangeInfo} />
             <label alt="Unit Price (₱)" placeholder="Enter Unit Price" />
             <br /><div className="text">Is it in Stock?</div>  
             <div className="button r" id="button-1">
-            <input type="checkbox" name="inStock" className="checkbox" id="inStock"  onChange={this.handleChangeInfo}/> 
+            <input type="checkbox" name="inStock" className="checkbox" id="inStock" 
+            checked={this.state.food.inStock}
+            onChange={this.handleChangeInfo} /> 
             <div className="knobs"></div>
             <div className="layer"></div> 
             </div>
