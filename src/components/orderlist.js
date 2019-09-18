@@ -7,7 +7,11 @@ class OrderList extends Component {
         <Fragment>
          
            <div><p className="title"><b>Order</b> List</p></div>
-           <div><a href="#" className="myButton">Your button</a> 
+           <div>
+            <button class="icon-btn add-btn">
+                  <div class="add-icon"></div>
+                  <div class="btn-txt">Add Order</div>
+            </button>
           </div>
         </Fragment>
         )

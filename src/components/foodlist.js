@@ -9,7 +9,11 @@ class FoodList extends Component {
         {/* <div className="flex-container"> */}
           {/* <div className="container"> */}
           <div><p className="title"><b>Food</b> List </p></div>
-          <div><a href="#" className="myButton">Your button</a> 
+          <div>   
+            <button class="icon-btn add-btn">
+                  <div class="add-icon"></div>
+                  <div class="btn-txt">Add Food</div>
+            </button>
           </div>
           {/* </div> */}
           {/* </div> */}
