@@ -33,6 +33,10 @@ class AddFood extends Component {
         if (isNaN(food.price)){
             return alert('Price must be number!');
         }
+
+        food.inStock = e.target.checked ? 'on' : 'off';
+        console.log(food.inStock);
+
        // let userList = [...this.state.userList];
           foodItemList.push(food);
           this.setState({ foodItemList });
@@ -59,7 +63,7 @@ class AddFood extends Component {
             <label alt="Unit Price (₱)" placeholder="Enter Unit Price" />
             <br /><div className="text">Is it in Stock?</div>  
             <div className="button r" id="button-1">
-            <input type="checkbox" name="inStock" className="checkbox" id="inStock"/> 
+            <input type="checkbox" name="inStock" className="checkbox" id="inStock"  onChange={this.handleChangeInfo}/> 
             <div className="knobs"></div>
             <div className="layer"></div> 
             </div>
