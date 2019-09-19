@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import '../css/addfood.css';
 
-const foodInitState = {
+const foodInitState ={
   name: '',
   price: 0,
   inStock: true
@@ -53,15 +53,16 @@ class AddFood extends Component {
 
     for(let id in foodItemList)
       if(foodItemList[id].name === food.name)
-        return alert("Inputed name already exists");
+        return alert("Food name already exists.");
 
     // THIS IS NEEDED
     food.price = Number(food.price);
-    foodItemList.push(food);
+    // foodItemList.push(food);
 
-    const newFoodItem = {...foodItemList};
+    const newFoodItem = [...foodItemList];
+    newFoodItem.push(food);
     this.setState({ foodItemList: newFoodItem }, this.handleClearFoodFields);
-    alert("SUCCESS!");
+    alert("Add food item is succesful!");
     e.preventDefault();
   }
 

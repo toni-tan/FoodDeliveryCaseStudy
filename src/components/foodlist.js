@@ -19,7 +19,7 @@ class FoodList extends Component {
           <div>   
             <button className="icon-btn add-btn" onClick={this.handleClick}>
                   <div className="add-icon"></div>
-                  <div className="btn-txt">Add Food</div>
+                  <div className="btn-txt">Add Food Item</div>
             </button>
           </div>
           {/* </div> */}
