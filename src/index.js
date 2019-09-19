@@ -16,7 +16,7 @@ const routing = (
       <div>
         <aside className="sidebar">
           <nav className="nav">
-            Food Delivery System
+            {/* Food Delivery System */}
             <ul>
               <li>
                 <NavLink exact to="/" activeClassName="active">

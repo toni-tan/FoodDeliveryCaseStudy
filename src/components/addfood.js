@@ -1,5 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import '../css/addfood.css';
+import axios from 'axios';
+
 
 const foodInitState ={
   name: '',
@@ -63,7 +65,22 @@ class AddFood extends Component {
     newFoodItem.push(food);
     this.setState({ foodItemList: newFoodItem }, this.handleClearFoodFields);
     alert("Add food item is succesful!");
-    e.preventDefault();
+    // e.preventDefault();
+
+    
+    let foodList = this.state.food;
+    const configvar ={
+      headers:{
+        'Content-Type': 'Application/json'
+      }
+    }
+
+    axios.post('http://localhost:8080/CSDB/rest/foodlist', foodList, configvar)
+      .then(res => {
+        console.log(res.data);
+      });
+
+      e.preventDefault();
   }
 
 
