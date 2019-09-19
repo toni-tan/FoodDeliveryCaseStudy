@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import { withRouter } from 'react-router-dom';
 import '../css/foodlist.css'
 import '../css/App.css'
+import FoodTable from './foodtable';
 
 class FoodList extends Component {
 
@@ -22,6 +23,9 @@ class FoodList extends Component {
                   <div className="btn-txt">Add Food Item</div>
             </button>
           </div>
+          <div className="flex-margin">
+              <FoodTable/>
+         </div>
           {/* </div> */}
           {/* </div> */}
         
