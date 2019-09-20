@@ -86,6 +86,7 @@ class AddFood extends Component {
         console.log(res.data);
       });
 
+      this.setState({food: {name: "",  price: 0, inStock: true}});
       e.preventDefault();
   }
 
