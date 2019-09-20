@@ -87,8 +87,11 @@ input[type="text"] {
     border-radius: 2px;
 }
 
+.buttons{
+  display: flex;
+}
 .submit {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     padding: 0.3em 1em;
     text-decoration: none;
@@ -101,14 +104,37 @@ input[type="text"] {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
-    position: fixed;
-    left: 45%;
-    top:52%;
+    /* position: fixed; */
+    /* left: 45%; */
+    /* top:52%; */
 }
 
 .submit:hover {
     background: #8f94fb;
     color: white;
+}
+
+.cancel {
+  /* display: flex; */
+  justify-content: center;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #ffffff;
+  border: solid 2px #7D5BA6;
+  background: #8f94fb;
+  border-radius: 3px;
+  transition: .4s;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 16px;
+  /* position: fixed; */
+ margin-right: 340px;
+}
+
+.cancel:hover {
+  background: #fff;
+  color: #7D5BA6;
 }
 
 .checkbox

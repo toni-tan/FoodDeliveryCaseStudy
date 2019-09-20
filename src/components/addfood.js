@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import { withRouter } from 'react-router-dom';
 import '../css/addfood.css';
 import axios from 'axios';
 
@@ -42,6 +43,11 @@ class AddFood extends Component {
 
   handleClearFoodFields = () => this.setState({ food: foodInitState });
 
+  handleCancel = () => {
+    let path = "/";
+    this.props.history.push(path);
+  }
+
   handleAddFoodItem = e => {
     let { food, foodItemList } = this.state;
     if (food.name.length <= 0 || food.price.length <= 0)
@@ -54,7 +60,7 @@ class AddFood extends Component {
       return alert("Price must be a non-negative number!");
 
     for(let id in foodItemList)
-      if(foodItemList[id].name === food.name)
+      if(foodItemList[id].name.toUpperCase() === food.name.toUpperCase())
         return alert("Food name already exists.");
 
     // THIS IS NEEDED
@@ -125,7 +131,10 @@ class AddFood extends Component {
               <div className="layer"></div>
             </div>
             <br />
+            <div className="buttons">
+            <button type="button" onClick={this.handleCancel} className="cancel">Cancel</button>
             <button type="button" onClick={this.handleAddFoodItem} className="submit">Submit</button>
+            </div>
           </form>
         </div>
       </Fragment>
