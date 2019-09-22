@@ -9,6 +9,7 @@ import App from "./App";
 import OrderList from "./components/orderlist";
 import AddFood from "./components/addfood";
 import * as serviceWorker from "./serviceWorker";
+import AddOrder from "./components/addorder";
 
 const routing = (
   <Router>
@@ -37,6 +38,7 @@ const routing = (
       <Route exact path="/" component={App} />
       <Route path="/orders" component={OrderList} />
       <Route path="/addfood" component={ AddFood }/>
+      <Route path="/addorder" component={ AddOrder }/>
     </div>
   </Router>
 );

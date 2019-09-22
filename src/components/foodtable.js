@@ -13,6 +13,15 @@ const foodInitState = {
 };
 
 class FoodTable extends Component {
+    // state = { show: false };
+
+    // showModal = () => {
+    //   this.setState({ show: true });
+    // };
+  
+    // hideModal = () => {
+    //   this.setState({ show: false });
+    // };
 
     constructor(props) {
         super(props);
@@ -79,7 +88,7 @@ class FoodTable extends Component {
                                         <td>{food.name}</td>
                                         <td>₱{food.price}</td>
                                         <td>{food.inStock.toString()}</td>
-                                        <td><FontAwesomeIcon icon={faEdit} /></td>
+                                        <td><button  onClick={this.showModal}><FontAwesomeIcon icon={faEdit} /></button></td>
                                     </tr>
                                 </tbody>
 
