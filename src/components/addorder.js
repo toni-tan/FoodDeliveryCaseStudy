@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import '../css/addfood.css';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 // const foodInitState ={
