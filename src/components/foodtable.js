@@ -11,7 +11,7 @@ const foodInitState = {
     name: '',
     price: 0,
     inStock: true
-};
+    };
 
 class FoodTable extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class FoodTable extends Component {
             filter: 'none', // || stock out-of-stock none
             showComponentModal: false, // modal
             id: 0 //default id
-        }
+                    }
     }
 
     componentDidMount() {
@@ -31,6 +31,7 @@ class FoodTable extends Component {
         const getFoodItemListURL = 'http://localhost:8080/CSDB/rest/foodlist';
         axios.get(getFoodItemListURL).then(res => {
             console.log('SERVICE SUCCESS');
+          console.log(res.data)
             this.setState({
                 foodItemList: res.data
             });
@@ -39,25 +40,22 @@ class FoodTable extends Component {
     }
 
 
-    handleUpdateComponent = e => {
-        console.log('UPDATE COMPONENT ITEM', this.state.componentItem);
-        
-        // Place axios call for delete here
-        let foodList = this.state.food;
+    // UPDATE THIS
+    handleUpdateComponent = food => {
+      	console.log('OLD VALUE', this.state.food)
+      	console.log('UPDATED FOOD', food);
+      
         const configvar ={
           headers:{
             'Content-Type': 'Application/json'
           }
         }
-    
-        axios.put('http://localhost:8080/CSDB/rest/foodlist/update/{this.state.id}', foodList, configvar)
+        
+        axios.put(`http://localhost:8080/CSDB/rest/foodlist/update/${food.id}`, food, configvar)
           .then(res => {
             console.log(res.data);
           });
-    
-        this.setState({food: {name: "",  price: 0, inStock: true}});
-          e.preventDefault();
-        
+      
         this.hideModal();
     }
 
@@ -75,16 +73,14 @@ class FoodTable extends Component {
     // MODAL VISIBILITY FUNCTIONS
 
     showUpdateModal = (food) => {
-        this.setState(prevState => ({
-            ...prevState,
+      console.log("DISPLAY MO TO", food)
+        this.setState({
             food: food,
-            showComponentModal : true 
-        }))
+            showComponentModal: true 
+        })
     }
     
-    hideModal = () => {
-        this.setState({showComponentModal : false});
-    }
+    hideModal = () => this.setState({showComponentModal : false});
     
     // handleCancel = () => {
     //     let path = "#"; 
@@ -92,27 +88,21 @@ class FoodTable extends Component {
     //   }
     
     render() {
-        
         const foodItemList= this.filterList();
         const { filter } = this.state;
-      
       
         return (
                 
             <div>
                 <div>
-                            <UpdateFood 
-                                handleChangeName={this.handleChangeName}
-                                handleChangePrice={this.handleChangePrice}
-                                handleChangeInStock={this.handleChangeInStock}
+                  	{ this.state.showComponentModal ? <UpdateFood 
                                 handleUpdateComponent={this.handleUpdateComponent}
                                 hideModal = {this.hideModal}
-                                showComponentModal={this.state.showComponentModal}
-                                showUpdateModal={this.showUpdateModal}
                                 food={this.state.food}
                                 //modalFlow={this.state.modalFlow}
                                 // componentItem={this.state.componentItem}
-                            />
+                            /> : null}
+                            
                             </div>
                 <div>
                   <span onClick={() => this.changeFilter('none')} className={filter === 'none' && 'active-txt'}>ALL </span> | 
@@ -130,7 +120,8 @@ class FoodTable extends Component {
                         </tr>
                     </thead>
                     {
-                        foodItemList.map((food) => {
+                        foodItemList.map(food => {
+                          // ETO 
                             return ( 
                                 <tbody>
                                     <tr>
