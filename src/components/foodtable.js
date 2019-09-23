@@ -1,10 +1,11 @@
-
 import React, { Component, Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import '../css/foodtable.css';
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import UpdateFood from './updatefood';
 
 const foodInitState = {
     name: '',
@@ -13,23 +14,15 @@ const foodInitState = {
 };
 
 class FoodTable extends Component {
-    // state = { show: false };
-
-    // showModal = () => {
-    //   this.setState({ show: true });
-    // };
-  
-    // hideModal = () => {
-    //   this.setState({ show: false });
-    // };
-
     constructor(props) {
         super(props);
 
         this.state = {
             foodItemList: [],
             food: foodInitState,
-          	filter: 'none' // || stock out-of-stock none
+            filter: 'none', // || stock out-of-stock none
+            showComponentModal: false, // modal
+            id: 0 //default id
         }
     }
 
@@ -44,10 +37,33 @@ class FoodTable extends Component {
         });
 
     }
-  
- 		changeFilter = value => this.setState({ filter: value });
+
+
+    handleUpdateComponent = e => {
+        console.log('UPDATE COMPONENT ITEM', this.state.componentItem);
+        
+        // Place axios call for delete here
+        let foodList = this.state.food;
+        const configvar ={
+          headers:{
+            'Content-Type': 'Application/json'
+          }
+        }
     
-		filterList = () => {
+        axios.put('http://localhost:8080/CSDB/rest/foodlist/update/{this.state.id}', foodList, configvar)
+          .then(res => {
+            console.log(res.data);
+          });
+    
+        this.setState({food: {name: "",  price: 0, inStock: true}});
+          e.preventDefault();
+        
+        this.hideModal();
+    }
+
+ 	changeFilter = value => this.setState({ filter: value });
+    
+	filterList = () => {
       if(this.state.filter === 'stock')
         return this.state.foodItemList.filter(item => item.inStock);
       else if(this.state.filter === 'out-of-stock')
@@ -55,16 +71,49 @@ class FoodTable extends Component {
       else
         return this.state.foodItemList;
     }
-    
-   
 
+    // MODAL VISIBILITY FUNCTIONS
+
+    showUpdateModal = (food) => {
+        this.setState(prevState => ({
+            ...prevState,
+            food: food,
+            showComponentModal : true 
+        }))
+    }
+    
+    hideModal = () => {
+        this.setState({showComponentModal : false});
+    }
+    
+    // handleCancel = () => {
+    //     let path = "#"; 
+    //     this.props.history.push(path);
+    //   }
+    
     render() {
-        const foodItemList = this.filterList();
+        
+        const foodItemList= this.filterList();
         const { filter } = this.state;
       
       
         return (
-            <Fragment>
+                
+            <div>
+                <div>
+                            <UpdateFood 
+                                handleChangeName={this.handleChangeName}
+                                handleChangePrice={this.handleChangePrice}
+                                handleChangeInStock={this.handleChangeInStock}
+                                handleUpdateComponent={this.handleUpdateComponent}
+                                hideModal = {this.hideModal}
+                                showComponentModal={this.state.showComponentModal}
+                                showUpdateModal={this.showUpdateModal}
+                                food={this.state.food}
+                                //modalFlow={this.state.modalFlow}
+                                // componentItem={this.state.componentItem}
+                            />
+                            </div>
                 <div>
                   <span onClick={() => this.changeFilter('none')} className={filter === 'none' && 'active-txt'}>ALL </span> | 
                   <span onClick={() => this.changeFilter('stock')}  className={filter === 'stock' && 'active-txt'}> In Stock </span> | 
@@ -82,13 +131,14 @@ class FoodTable extends Component {
                     </thead>
                     {
                         foodItemList.map((food) => {
-                            return (
+                            return ( 
                                 <tbody>
                                     <tr>
                                         <td>{food.name}</td>
                                         <td>₱{food.price}</td>
                                         <td>{food.inStock.toString()}</td>
-                                        <td><button  onClick={this.showModal}><FontAwesomeIcon icon={faEdit} /></button></td>
+                                        <td><button onClick={() => this.showUpdateModal(food)}><FontAwesomeIcon icon={faEdit} /></button></td>
+                                       {/* <td> <a href="#open-modal"><FontAwesomeIcon icon={faEdit}/></a></td> */}
                                     </tr>
                                 </tbody>
 
@@ -96,8 +146,8 @@ class FoodTable extends Component {
                         })
                     }
                 </table>
-            </Fragment>
+            </div>
         );
     }
 }
-export default FoodTable
+export default withRouter(FoodTable)

@@ -1,0 +1,39 @@
+.rootCss {
+    position: absolute;
+    z-index: 50;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    background: rgba(16, 20, 28, .85);
+}
+
+.innerCss {
+    /* width: 800px; */
+    /* height: 175px; */
+    /* padding: 20px; */
+    border-radius: 8px;
+    display: flex;
+    padding: 0 20px 20px 20px;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 3px 6px 7px rgba(0,0,0,0.7);
+    font-size: 14px;
+}    
+
+.title-modal {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-size:25px;
+    /* letter-spacing: 0.1em; */
+    /* color: #FFF; */
+    /* font-weight: bold; */
+    /* margin-top: 30px; */
+    /* padding-top: 20px; */
+    /* margin-left: -53px; */
+  }
+  

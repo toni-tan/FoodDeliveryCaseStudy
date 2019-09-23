@@ -97,3 +97,9 @@ span {
     font-family: 'Lato', 'sans-serif';
     cursor: pointer;
 }
+
+button{
+border: none;
+background: none;
+cursor: pointer;
+}
