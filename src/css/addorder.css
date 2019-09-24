@@ -20,10 +20,10 @@ body{
 	 background: #9E62D9;
 }
  .mylabel + input[type=radio] + .mylabel {
-	 border-left: solid 3px #675f6b;
+	 border-left: solid 1px #43166F;
 }
  .radio-group {
-	 border: solid 3px #675f6b;
+	 border: solid 1px #43166F;
      display: inline-block;
      margin-top: 10px;
     margin-bottom: 20px;
