@@ -27,23 +27,42 @@ class FoodTable extends Component {
     }
 
     componentDidMount() {
-        // const getUserListURL = 'https://reqres.in/api/users?pages=1';
-        const getFoodItemListURL = 'http://localhost:8080/CSDB/rest/foodlist';
-        axios.get(getFoodItemListURL).then(res => {
-            console.log('SERVICE SUCCESS');
-          console.log(res.data)
-            this.setState({
-                foodItemList: res.data
-            });
-        });
+        this.getUpdateFood();
 
     }
+
+    getUpdateFood = () =>{
+      // const getUserListURL = 'https://reqres.in/api/users?pages=1';
+      const getFoodItemListURL = 'http://localhost:8080/CSDB/rest/foodlist';
+      axios.get(getFoodItemListURL).then(res => {
+          console.log('SERVICE SUCCESS');
+        console.log(res.data)
+          this.setState({
+              foodItemList: res.data
+          });
+      });
+    } 
 
 
     // UPDATE THIS
     handleUpdateComponent = food => {
       	console.log('OLD VALUE', this.state.food)
-      	console.log('UPDATED FOOD', food);
+        console.log('UPDATED FOOD', food);
+        
+        
+    let { foodItemList } = this.state;
+    if (food.name.length <= 0 || food.price.length <= 0)
+      return alert('Food item name or Unit price cannot be blank!');
+
+    if (isNaN(food.price))
+      return alert('Price must be number!');
+
+    if (food.price < 0)
+      return alert("Price must be a non-negative number!");
+
+    // for(let id in foodItemList)
+    //   if(foodItemList[id].name.toUpperCase() === food.name.toUpperCase() && foodItemList[id].price === food.price)
+    //     return alert("No changes.");
       
         const configvar ={
           headers:{
@@ -54,6 +73,8 @@ class FoodTable extends Component {
         axios.put(`http://localhost:8080/CSDB/rest/foodlist/update/${food.id}`, food, configvar)
           .then(res => {
             console.log(res.data);
+            this.getUpdateFood();
+            // window.location.reload();
           });
       
         this.hideModal();
