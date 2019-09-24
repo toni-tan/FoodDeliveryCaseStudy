@@ -61,8 +61,8 @@ class FoodTable extends Component {
       return alert("Price must be a non-negative number!");
 
     // for(let id in foodItemList)
-    //   if(foodItemList[id].name.toUpperCase() === food.name.toUpperCase() && foodItemList[id].price === food.price)
-    //     return alert("No changes.");
+    //   if(foodItemList[id].name.toUpperCase() === food.name.toUpperCase())
+    //     return alert("Existing.");
       
         const configvar ={
           headers:{

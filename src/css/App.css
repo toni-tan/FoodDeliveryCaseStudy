@@ -150,4 +150,5 @@ body{
 .heading{
   color: #fff;
   font-size: 20px;
+  cursor: default;
 }

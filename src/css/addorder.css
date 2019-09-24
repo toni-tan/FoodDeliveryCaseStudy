@@ -1,0 +1,34 @@
+body{
+    font-family: 'Lato', sans-serif;
+}
+ input[type=radio] {
+	 position: absolute;
+	 visibility: hidden;
+	 display: none;
+}
+ .mylabel {
+     color: #656263;
+     background: #fff; 
+	 display: inline-block;
+	 cursor: pointer;
+	 /* font-weight: bold; */
+	 padding: 5px 20px;
+}
+ input[type=radio]:checked + .mylabel {
+    font-weight: bold;
+	 color: #fff;
+	 background: #9E62D9;
+}
+ .mylabel + input[type=radio] + .mylabel {
+	 border-left: solid 3px #675f6b;
+}
+ .radio-group {
+	 border: solid 3px #675f6b;
+     display: inline-block;
+     margin-top: 10px;
+    margin-bottom: 20px;
+	 /* margin: 20px; */
+	 border-radius: 10px;
+	 overflow: hidden;
+}
+ 

@@ -83,7 +83,7 @@ class UpdateFood extends Component {
                             type="button"
                             onClick={this.handleClickUpdate}
                             className="submit"
-                        >Submit</button>
+                        >Update</button>
                     </div>
                 </form>
             </div>
