@@ -16,7 +16,9 @@ const orderInitState = {
     address: '',
     contact: '',
     total: 0,
-    status: ''
+    calculatedTotal: 0,
+    status: '',
+    quantity: 0
 
 };
 
@@ -31,6 +33,8 @@ class AddOrder extends Component {
             orderList: [],
             order: orderInitState,
             selectedOptionID: -1,
+            quantity: 0
+            
         }
 
     }
@@ -78,7 +82,7 @@ class AddOrder extends Component {
     handleChangeStatus = e => this.setState({
         order: {
             ...this.state.order,
-            status: e.target.checked
+            status: e.target.value
         }
     });
 
@@ -138,6 +142,7 @@ class AddOrder extends Component {
     }
 
     displayInStockOnly = () => this.state.foodItemList.filter(item => item.inStock);
+
     handleChangeOrderItem = event => {
         console.log("I NEED THIS!!!!!!!!!!!!!!!!!!!!!!", event.target.value)
         this.setState({
@@ -145,9 +150,32 @@ class AddOrder extends Component {
         })
     }
 
+    // handleChangeOrderQty = event => {
+    //   this.setState({
+    //     ...this.state.order,
+    //     quantity: event.target.value
+    //   })
+    // }
+
+    handleChangeOrderQuantity = e => this.setState({
+        order: {
+            ...this.state.order,
+            quantity: e.target.value
+        }
+    });
+
+    handleChangeTotalItemPrice = e => this.setState({
+        order: {
+            ...this.state.order,
+            total: e.target.value
+        }
+    });
+
+
     render() {
         console.log(this.state);
         const foodItemList = this.state.foodItemList;
+        
         return (
             <Fragment>
                 <div>
@@ -189,7 +217,7 @@ class AddOrder extends Component {
                         <label alt="Contact Number" placeholder="Enter Contact Number" />
                         <br />
                         <select value={this.state.selectedOptionID} onChange={this.handleChangeOrderItem}>
-                            <option value={-1}>Order Items</option>
+                            <option value={-1} disabled>Order Items</option>
                             {
                                 this.displayInStockOnly().map(food => {
                                     return (
@@ -202,7 +230,7 @@ class AddOrder extends Component {
                             this.state.selectedOptionID !== -1 ?
                                 <>
                                <p/>Quantity:
-                                <input />
+                              <input id="quantity" type="number" onChange={this.handleChangeOrderQuantity} />
                                 </> : null
                         }
                         {
@@ -212,17 +240,24 @@ class AddOrder extends Component {
                                 </div> : null
                         }
                         
+                        {
+                            this.state.selectedOptionID !== -1 ?
+                            
+                                <div>
+                                    Total Item Price:  {this.state.order.total = this.getPriceById() * this.state.order.quantity}
+                                </div> : null
+                        }
                         <br />
                         <b>Total:</b>
                         <p />
                         <b>Status: </b>
                         <br />
                         <div class="radio-group" onChange={this.handleChangeStatus}>
-                            <input type="radio" id="0" name="selector" /><label for="0" className="mylabel">Received</label>
-                            <input type="radio" id="1" name="selector" /><label for="1" className="mylabel">Kitchen</label>
-                            <input type="radio" id="2" name="selector" /><label for="2" className="mylabel">In Transit</label>
-                            <input type="radio" id="3" name="selector" /><label for="3" className="mylabel">Delivered</label>
-                            <input type="radio" id="4" name="selector" /><label for="4" className="mylabel">Canceled</label>
+                            <input type="radio" id="0" value="0" name="selector" /><label for="0" className="mylabel">Received</label>
+                            <input type="radio" id="1" value="1" name="selector" /><label for="1" className="mylabel">Kitchen</label>
+                            <input type="radio" id="2" value="2" name="selector" /><label for="2" className="mylabel">In Transit</label>
+                            <input type="radio" id="3" value="3" name="selector" /><label for="3" className="mylabel">Delivered</label>
+                            <input type="radio" id="4" value="4" name="selector" /><label for="4" className="mylabel">Canceled</label>
                         </div>
                         <div className="buttons">
                             <button type="button" onClick={this.handleCancel} className="cancel">Cancel</button>

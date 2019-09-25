@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import { withRouter } from 'react-router-dom';
 import '../css/orderlist.css'
+import OrderTable from './ordertable';
 
 class OrderList extends Component {
   handleClick = () => {
@@ -19,6 +20,9 @@ class OrderList extends Component {
                   <div className="btn-txt">Add Order</div>
             </button>
           </div>
+          <div className="flex-margin">
+              <OrderTable />
+         </div>
         </Fragment>
         )
     }
