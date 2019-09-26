@@ -11,7 +11,7 @@ const foodInitState = {
 };
 
 const orderInitState = {
-    order_id: 0,
+    order_id: 1,
     cName: '',
     address: '',
     contact: '',
@@ -87,54 +87,55 @@ class AddOrder extends Component {
     });
 
 
-    //   handleClearFoodFields = () => this.setState({ food: foodInitState });
+    handleClearOrderFields = () => this.setState({ order: orderInitState });
 
     handleCancel = () => {
         let path = "/orders";
         this.props.history.push(path);
     }
 
-    //   handleAddFoodItem = e => {
-    //     let { food, foodItemList } = this.state;
-    //     if (food.name.length <= 0 || food.price.length <= 0)
-    //       return alert('Food item name or Unit price cannot be blank!');
+      handleAddOrderItem = e => {
+        let { order, orderList } = this.state;
+        if (order.cName.length <= 0 || order.address.length <= 0 || 
+            order.contact.length <= 0 )
+          return alert('Fields should not be empty');
 
-    //     if (isNaN(food.price))
-    //       return alert('Price must be number!');
+        if (isNaN(order.quantity))
+          return alert('Quantity must be number!');
 
-    //     if (food.price < 0)
-    //       return alert("Price must be a non-negative number!");
+        if (order.quantity < 0)
+          return alert("Quantity must be a non-negative number!");
 
-    //     for(let id in foodItemList)
-    //       if(foodItemList[id].name.toUpperCase() === food.name.toUpperCase())
-    //         return alert("Food name already exists.");
+        // for(let id in foodItemList)
+        //   if(foodItemList[id].name.toUpperCase() === food.name.toUpperCase())
+        //     return alert("Food name already exists.");
 
-    //     // THIS IS NEEDED
-    //     food.price = Number(food.price);
-    //     // foodItemList.push(food);
+        // THIS IS NEEDED
+        order.quantity = Number(order.quantity);
+        // foodItemList.push(food);
 
-    //     const newFoodItem = [...foodItemList];
-    //     newFoodItem.push(food);
-    //     this.setState({ foodItemList: newFoodItem }, this.handleClearFoodFields);
-    //     alert("Add food item is succesful!");
-    //     // e.preventDefault();
+        const newOrderItem = [...orderList];
+        newOrderItem.push(order);
+        this.setState({ orderList: newOrderItem }, this.handleClearOrderFields);
+        alert("Add order item is succesful!");
+        // e.preventDefault();
 
 
-    //     let foodList = this.state.food;
-    //     const configvar ={
-    //       headers:{
-    //         'Content-Type': 'Application/json'
-    //       }
-    //     }
+        let orderItemList = this.state.order;
+        const configvar ={
+          headers:{
+            'Content-Type': 'Application/json'
+          }
+        }
 
-    //     axios.post('http://localhost:8080/CSDB/rest/foodlist', foodList, configvar)
-    //       .then(res => {
-    //         console.log(res.data);
-    //       });
+        axios.post('http://localhost:8080/CSDB/rest/orderlist', orderItemList, configvar)
+          .then(res => {
+            console.log(res.data);
+          });
 
-    //       this.setState({food: {name: "",  price: 0, inStock: true}});
-    //       e.preventDefault();
-    //   }
+          this.setState({order: {order_id: 0, address: "",  contact: "", total: 0, calculatedTotal: 0, status: "", quantity: 0}});
+          e.preventDefault();
+      }
 
     getPriceById = () => {
         const item = this.state.foodItemList.find(food => food.id == this.state.selectedOptionID);
@@ -174,7 +175,7 @@ class AddOrder extends Component {
 
     render() {
         console.log(this.state);
-        const foodItemList = this.state.foodItemList;
+        // const order = this.state.foodItemList;
         
         return (
             <Fragment>
@@ -230,7 +231,8 @@ class AddOrder extends Component {
                             this.state.selectedOptionID !== -1 ?
                                 <>
                                <p/>Quantity:
-                              <input id="quantity" type="number" onChange={this.handleChangeOrderQuantity} />
+                              <input id="quantity" 
+                            autoComplete="off" type="number" onChange={this.handleChangeOrderQuantity} />
                                 </> : null
                         }
                         {
@@ -252,7 +254,7 @@ class AddOrder extends Component {
                         <p />
                         <b>Status: </b>
                         <br />
-                        <div class="radio-group" onChange={this.handleChangeStatus}>
+                        <div className="radio-group" onChange={this.handleChangeStatus}>
                             <input type="radio" id="0" value="0" name="selector" /><label for="0" className="mylabel">Received</label>
                             <input type="radio" id="1" value="1" name="selector" /><label for="1" className="mylabel">Kitchen</label>
                             <input type="radio" id="2" value="2" name="selector" /><label for="2" className="mylabel">In Transit</label>
@@ -261,7 +263,7 @@ class AddOrder extends Component {
                         </div>
                         <div className="buttons">
                             <button type="button" onClick={this.handleCancel} className="cancel">Cancel</button>
-                            <button type="button" className="submit">Submit</button>
+                            <button type="button" onClick={this.handleAddOrderItem} className="submit">Submit</button>
                         </div>
                     </form>
                 </div>
