@@ -74,6 +74,7 @@ class FoodTable extends Component {
           .then(res => {
             console.log(res.data);
             this.getUpdateFood();
+            // alert(res.data);
             // window.location.reload();
           });
       
@@ -107,6 +108,15 @@ class FoodTable extends Component {
     //     let path = "#"; 
     //     this.props.history.push(path);
     //   }
+
+    toInStockString(inStock) {
+      switch(inStock) {
+        case true:
+          return 'Yes';
+        case false:
+          return 'No';
+      }
+    }
     
     render() {
         const foodItemList= this.filterList();
@@ -148,7 +158,7 @@ class FoodTable extends Component {
                                     <tr>
                                         <td>{food.name}</td>
                                         <td>₱{food.price}</td>
-                                        <td>{food.inStock.toString()}</td>
+                                        <td>{this.toInStockString(food.inStock)}</td>
                                         <td><button onClick={() => this.showUpdateModal(food)}><FontAwesomeIcon icon={faEdit} /></button></td>
                                        {/* <td> <a href="#open-modal"><FontAwesomeIcon icon={faEdit}/></a></td> */}
                                     </tr>

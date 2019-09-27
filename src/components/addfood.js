@@ -71,7 +71,7 @@ class AddFood extends Component {
     newFoodItem.push(food);
     this.setState({ foodItemList: newFoodItem }, this.handleClearFoodFields);
     alert("Add food item is succesful!");
-    // e.preventDefault();
+    e.preventDefault();
 
     
     let foodList = this.state.food;
@@ -84,6 +84,7 @@ class AddFood extends Component {
     axios.post('http://localhost:8080/CSDB/rest/foodlist', foodList, configvar)
       .then(res => {
         console.log(res.data);
+        //  alert(res.data);
       });
 
       this.setState({food: {name: "",  price: 0, inStock: true}});

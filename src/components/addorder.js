@@ -18,7 +18,7 @@ const orderInitState = {
     total: 0,
     calculatedTotal: 0,
     status: '',
-    quantity: 0
+   quantity: 0
 
 };
 
@@ -33,7 +33,7 @@ class AddOrder extends Component {
             orderList: [],
             order: orderInitState,
             selectedOptionID: -1,
-            quantity: 0
+            quantity: 0,
             
         }
 
@@ -131,6 +131,7 @@ class AddOrder extends Component {
         axios.post('http://localhost:8080/CSDB/rest/orderlist', orderItemList, configvar)
           .then(res => {
             console.log(res.data);
+            
           });
 
           this.setState({order: {order_id: 0, address: "",  contact: "", total: 0, calculatedTotal: 0, status: "", quantity: 0}});
@@ -149,7 +150,9 @@ class AddOrder extends Component {
         this.setState({
             selectedOptionID: event.target.value
         })
+
     }
+
 
     // handleChangeOrderQty = event => {
     //   this.setState({
@@ -171,6 +174,20 @@ class AddOrder extends Component {
             total: e.target.value
         }
     });
+
+    // addInput = e => this.setState({
+    //          inputs: 
+    //            { ...this.state.inputs,
+    //         //    { quantity: e.target.value,
+    //         //     total: e.target.value
+    //         // }}
+    //            }
+               
+    // });
+
+
+
+    
 
 
     render() {
@@ -249,12 +266,16 @@ class AddOrder extends Component {
                                     Total Item Price:  {this.state.order.total = this.getPriceById() * this.state.order.quantity}
                                 </div> : null
                         }
+                        <br /> 
                         <br />
-                        <b>Total:</b>
+                        <b>Total: </b>
+                        {
+                            this.state.order.calculatedTotal = this.state.order.total
+                        }
                         <p />
                         <b>Status: </b>
                         <br />
-                        <div className="radio-group" onChange={this.handleChangeStatus}>
+                        <div className="radio-group" onChange={this.handleChangeStatus} checked={this.state.order.status} >
                             <input type="radio" id="0" value="0" name="selector" /><label for="0" className="mylabel">Received</label>
                             <input type="radio" id="1" value="1" name="selector" /><label for="1" className="mylabel">Kitchen</label>
                             <input type="radio" id="2" value="2" name="selector" /><label for="2" className="mylabel">In Transit</label>

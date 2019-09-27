@@ -89,16 +89,16 @@ class OrderTable extends Component {
  	changeFilter = value => this.setState({ filter: value });
     
 	filterList = () => {
-      if(this.state.filter === '0')
-        return this.state.orderList.filter(item => item.status ==="0");
-      else if(this.state.filter === '1')
-        return this.state.orderList.filter(item => item.status ==="1"); 
-      else if(this.state.filter === '2')
-        return this.state.orderList.filter(item => item.status ==="2"); 
-      else if(this.state.filter === '3')
-        return this.state.orderList.filter(item => item.status ==="3"); 
-      else if(this.state.filter === '4')
-        return this.state.orderList.filter(item => item.status ==="4"); 
+      if(this.state.filter == '0')
+        return this.state.orderList.filter(item => item.status =="0");
+      else if(this.state.filter == '1')
+        return this.state.orderList.filter(item => item.status =="1"); 
+      else if(this.state.filter == '2')
+        return this.state.orderList.filter(item => item.status =="2"); 
+      else if(this.state.filter == '3')
+        return this.state.orderList.filter(item => item.status =="3"); 
+      else if(this.state.filter == '4')
+        return this.state.orderList.filter(item => item.status =="4"); 
       else
         return this.state.orderList;
     }
@@ -120,6 +120,21 @@ class OrderTable extends Component {
         this.props.history.push(path);
       }
     
+      toOrderString(status) {
+        switch(status) {
+          case 0:
+            return 'Received';
+          case 1:
+            return 'Kitchen';
+          case 2:
+            return 'In Transit';
+          case 3: 
+            return 'Delivered';
+          case 4: 
+            return 'Canceled';
+
+        }
+      }
     render() {
         const orderList= this.filterList();
         const { filter } = this.state;
@@ -170,7 +185,7 @@ class OrderTable extends Component {
                                         <td>{order.order_id}</td>
                                         <td>{order.cName}</td>
                                         <td>{order.address}</td>
-                                        <td>{order.status}</td> 
+                                        <td>{this.toOrderString(order.status)}</td> 
                                         <td><button onClick={() => this.showUpdateModal(order)}><FontAwesomeIcon icon={faEdit} /></button></td> 
                                         {/* <td> <a href="#open-modal"><FontAwesomeIcon icon={faEdit}/></a></td> */}
                                        </tr>
